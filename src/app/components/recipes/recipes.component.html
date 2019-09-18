@@ -1,0 +1,102 @@
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>
+      <app-searchbox [queryType]="QueryType.include" class="componentSearchBox"></app-searchbox>
+    </td>
+    <td>
+      <app-searchbox [queryType]="QueryType.notInclude" class="componentSearchBox"></app-searchbox>
+    </td>
+    <td>
+      <button mat-raised-button class="btn btn-success" (click)="onSearch()">Search</button>
+    </td>
+    <td>
+      <button mat-raised-button class="btn btn-danger" (click)="onAddRecipe()">Add Recipe</button>
+    </td>
+    <td>
+      <button mat-raised-button class="btn btn-info" (click)="onAddIngredient()">Add Ingredient</button>
+    </td>
+    <td>
+      <button mat-raised-button class="btn btn-warning" (click)="onRandomRecipe()">Random Recipe</button>
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="7">
+      <app-recipe-details *ngIf="!showSearchFeature" (messageToParentComponent)="receiveMessage($event)" [recipeId]="randomRecipeId"></app-recipe-details>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="7">
+      <table mat-table *ngIf="showSearchFeature"
+             [dataSource]="dataSource" multiTemplateDataRows
+             class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="recipeName">
+          <th mat-header-cell *matHeaderCellDef> Recipes</th>
+          <td mat-cell *matCellDef="let recipe"> {{recipe.recipeName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editButton">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let recipe">
+            <button mat-raised-button class="btn btn-success" (click)="onEditRecipe(recipe.recipeId)">Edit</button>
+            <!-- <a routerLink="/editRecipe/{{recipe.recipeId}}">
+               Edit
+             </a> -->
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="deleteButton">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let recipe">
+            <button mat-raised-button class="btn btn-danger" (click)="onDelete(recipe)">Delete</button>
+          </td>
+        </ng-container>
+
+        <!--        <ng-container matColumnDef="ingredientName">-->
+        <!--          <th mat-header-cell *matHeaderCellDef> Ingredient Name</th>-->
+        <!--          <td mat-cell *matCellDef="let recipe">-->
+        <!--            <mat-cell *ngFor="let ingredient of recipe.ingredients">-->
+        <!--              {{ingredient.ingredientName}}-->
+        <!--            </mat-cell>-->
+        <!--          </td>-->
+        <!--        </ng-container>-->
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let recipe" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail"
+                 [@detailExpand]="recipe == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="example-element-diagram">
+                <div class="example-element-position"></div>
+              </div>
+              <mat-cell *ngFor="let ingredient of recipe.ingredients">
+                {{ingredient.ingredientName}}
+              </mat-cell>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay;"></tr>
+        <tr mat-row *matRowDef="let recipe; columns: columnsToDisplay;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === recipe"
+            (click)="expandedElement = expandedElement === recipe ? null : recipe">
+        </tr>
+        <tr mat-row *matRowDef="let recipe; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+

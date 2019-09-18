@@ -1,0 +1,11 @@
+<form class="main-form" [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="column-full-width ">
+    <input matInput placeholder="Recipe Name" formControlName="recipeName">
+  </mat-form-field>
+
+  <app-searchbox [queryType]="QueryType.include" [recipeId]="recipeId" class="componentSearchBox"></app-searchbox>
+
+  <button mat-raised-button class="btn btn-success" type="submit">Save</button>
+
+  <button mat-raised-button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+</form>

@@ -1,0 +1,9 @@
+<form class="main-form" [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="column-full-width ">
+    <input matInput placeholder="Ingredient Name" formControlName="ingredientName">
+  </mat-form-field>
+
+  <button mat-raised-button class="btn btn-success" type="submit">Save</button>
+
+  <button mat-raised-button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+</form>
