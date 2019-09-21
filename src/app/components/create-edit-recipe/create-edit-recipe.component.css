@@ -1,9 +1,18 @@
 .main-form {
   min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+  width: 75%;
 }
 
 .column-full-width {
   width: 100%;
+}
+
+.form-buttons-cancel {
+  margin-left: 10px;
+  width: 100px;
+}
+
+.form-buttons-save {
+  margin-left: 20px;
+  width: 100px;
 }

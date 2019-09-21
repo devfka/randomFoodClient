@@ -49,3 +49,16 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 /*******************************************************************************************************************/
+
+.buttons
+{
+  margin-right: 5px;
+  width: 150px;
+}
+
+.searchText
+{
+  width: 50px;
+  height: 300px;
+  margin-right: 10px;
+}

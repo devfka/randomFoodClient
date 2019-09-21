@@ -3,40 +3,34 @@
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
   <tr>
     <td>
-      <app-searchbox [queryType]="QueryType.include" class="componentSearchBox"></app-searchbox>
+      <app-searchbox [queryType]="QueryType.include" class="componentSearchBox searchText"></app-searchbox>
     </td>
     <td>
-      <app-searchbox [queryType]="QueryType.notInclude" class="componentSearchBox"></app-searchbox>
+      <app-searchbox [queryType]="QueryType.notInclude" class="componentSearchBox searchText"></app-searchbox>
     </td>
     <td>
       <button mat-raised-button class="btn btn-success" (click)="onSearch()">Search</button>
     </td>
-    <td>
-      <button mat-raised-button class="btn btn-danger" (click)="onAddRecipe()">Add Recipe</button>
-    </td>
-    <td>
-      <button mat-raised-button class="btn btn-info" (click)="onAddIngredient()">Add Ingredient</button>
-    </td>
-    <td>
-      <button mat-raised-button class="btn btn-warning" (click)="onRandomRecipe()">Random Recipe</button>
-    </td>
-    <td>
+  </tr>
+  <tr class="tr-buttons">
+    <td colspan="3">
+      <button mat-raised-button class="btn btn-danger buttons" (click)="onAddRecipe()">Add Recipe</button>
+      <button mat-raised-button class="btn btn-info buttons" (click)="onAddIngredient()">Add Ingredient</button>
+      <button mat-raised-button class="btn btn-warning buttons" (click)="onRandomRecipe()">Random Recipe</button>
     </td>
   </tr>
   <tr>
-    <td colspan="7">
-      <app-recipe-details *ngIf="!showSearchFeature" (messageToParentComponent)="receiveMessage($event)" [recipeId]="randomRecipeId"></app-recipe-details>
+  <tr>
+    <td colspan="3">
+      <app-recipe-details *ngIf="!showSearchFeature" (messageToParentComponent)="receiveMessage($event)"
+                          [recipeId]="randomRecipeId"></app-recipe-details>
     </td>
   </tr>
   <tr>
-    <td colspan="7">
+    <td colspan="3">
       <table mat-table *ngIf="showSearchFeature"
              [dataSource]="dataSource" multiTemplateDataRows
              class="mat-elevation-z8">

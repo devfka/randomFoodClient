@@ -1,9 +1,10 @@
-<form class="main-form" [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+<form class="text-center border border-success p-5 main-form" [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="column-full-width ">
     <input matInput placeholder="Ingredient Name" formControlName="ingredientName">
   </mat-form-field>
 
-  <button mat-raised-button class="btn btn-success" type="submit">Save</button>
-
-  <button mat-raised-button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+  <div>
+    <button mat-raised-button class="btn btn-success form-buttons-save" type="submit">Save</button>
+    <button mat-raised-button class="btn btn-danger form-buttons-cancel" (click)="onCancel()">Cancel</button>
+  </div>
 </form>
