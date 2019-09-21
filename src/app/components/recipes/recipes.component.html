@@ -1,59 +1,54 @@
-<table>
+<table class="mat-elevation-z8">
   <tr>
     <th></th>
     <th></th>
     <th></th>
   </tr>
   <tr>
-    <td>
-      <app-searchbox [queryType]="QueryType.include" class="componentSearchBox searchText"></app-searchbox>
+    <td class="searchText td-padding">
+      <app-searchbox [queryType]="QueryType.include" class="componentSearchBox"></app-searchbox>
     </td>
-    <td>
-      <app-searchbox [queryType]="QueryType.notInclude" class="componentSearchBox searchText"></app-searchbox>
+    <td class="searchText searchTextPadding">
+      <app-searchbox [queryType]="QueryType.notInclude" class="componentSearchBox"></app-searchbox>
     </td>
-    <td>
+    <td class="search-button">
       <button mat-raised-button class="btn btn-success" (click)="onSearch()">Search</button>
     </td>
   </tr>
   <tr class="tr-buttons">
-    <td colspan="3">
+    <td colspan="3" class="td-padding">
       <button mat-raised-button class="btn btn-danger buttons" (click)="onAddRecipe()">Add Recipe</button>
       <button mat-raised-button class="btn btn-info buttons" (click)="onAddIngredient()">Add Ingredient</button>
       <button mat-raised-button class="btn btn-warning buttons" (click)="onRandomRecipe()">Random Recipe</button>
     </td>
   </tr>
-  <tr>
-  <tr>
-    <td colspan="3">
+  <tr class="td-padding">
+    <td colspan="3" class="td-padding">
       <app-recipe-details *ngIf="!showSearchFeature" (messageToParentComponent)="receiveMessage($event)"
                           [recipeId]="randomRecipeId"></app-recipe-details>
     </td>
   </tr>
   <tr>
-    <td colspan="3">
+    <td colspan="3" class="td-padding td-paddingBottom">
       <table mat-table *ngIf="showSearchFeature"
              [dataSource]="dataSource" multiTemplateDataRows
              class="mat-elevation-z8">
         <!-- Name Column -->
         <ng-container matColumnDef="recipeName">
           <th mat-header-cell *matHeaderCellDef> Recipes</th>
-          <td mat-cell *matCellDef="let recipe"> {{recipe.recipeName}} </td>
+          <td class="recipeName" mat-cell *matCellDef="let recipe"> {{recipe.recipeName}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="editButton">
+        <ng-container matColumnDef="buttons">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let recipe">
-            <button mat-raised-button class="btn btn-success" (click)="onEditRecipe(recipe.recipeId)">Edit</button>
+            <button mat-raised-button class="btn btn-success tableButtons" (click)="onEditRecipe(recipe.recipeId)">
+              Edit
+            </button>
+            <button mat-raised-button class="btn btn-danger tableButtons" (click)="onDelete(recipe)">Delete</button>
             <!-- <a routerLink="/editRecipe/{{recipe.recipeId}}">
                Edit
              </a> -->
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="deleteButton">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let recipe">
-            <button mat-raised-button class="btn btn-danger" (click)="onDelete(recipe)">Delete</button>
           </td>
         </ng-container>
 
@@ -66,7 +61,6 @@
         <!--          </td>-->
         <!--        </ng-container>-->
 
-        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
           <td mat-cell *matCellDef="let recipe" [attr.colspan]="columnsToDisplay.length">
             <div class="example-element-detail"
@@ -75,6 +69,7 @@
                 <div class="example-element-position"></div>
               </div>
               <mat-cell *ngFor="let ingredient of recipe.ingredients">
+                <mat-icon matListIcon>check_circle</mat-icon>
                 {{ingredient.ingredientName}}
               </mat-cell>
             </div>

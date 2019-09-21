@@ -50,15 +50,42 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 /*******************************************************************************************************************/
 
-.buttons
-{
+.buttons {
   margin-right: 5px;
   width: 150px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-.searchText
-{
-  width: 50px;
-  height: 300px;
+.tableButtons {
+  margin-left: 10px;
   margin-right: 10px;
+}
+
+.recipeName {
+  width: 70%;
+}
+
+.search-button {
+  width: 30%;
+  padding-left: 100px;
+}
+
+.searchText {
+  width: 200px;
+}
+
+.searchTextPadding
+{
+  padding-left: 70px;
+}
+
+.td-padding
+{
+  padding-left: 40px;
+}
+
+.td-paddingBottom
+{
+  padding-bottom: 40px;
 }

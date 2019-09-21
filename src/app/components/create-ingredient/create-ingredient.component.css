@@ -1,18 +1,26 @@
 .main-form {
-  min-width: 150px;
-  width: 75%;
+  width: 60%;
 }
 
 .column-full-width {
-  width: 100%;
+  width: 80%;
+  padding-left: 30px;
 }
 
 .form-buttons-cancel {
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   width: 100px;
 }
 
 .form-buttons-save {
-  margin-left: 20px;
   width: 100px;
+  margin-left: 335px;
+}
+
+.description
+{
+  text-align: left;
+  margin-left: 30px;
+  padding-top: 30px;
 }

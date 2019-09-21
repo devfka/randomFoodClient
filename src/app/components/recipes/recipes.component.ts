@@ -26,7 +26,7 @@ export class RecipesComponent implements OnInit {
 
   private _dataSource: MatTableDataSource<RecipeIngredientView> = null;
 
-  public columnsToDisplay: Array<string> = ['recipeName', 'editButton', 'deleteButton'];
+  public columnsToDisplay: Array<string> = ['recipeName', 'buttons'];
 
   selectedIngredientOnParent: string[];
 
