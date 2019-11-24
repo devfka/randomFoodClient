@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {IngredientView} from "../types/ingredient";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RecipeIngredient, RecipeIngredientView} from "../types/recipe-ingredient";
+import {constants} from "../util/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class IngredientService {
 
     const url: string = environment.getIngredientList;
 
-    return this.http.get<IngredientView[]>(url);
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(constants.apiCredentials)});
+
+    return this.http.get<IngredientView[]>(url, {headers});
   }
 
   public addIngredient(ingredientView: IngredientView): Observable<Object> {
@@ -28,7 +31,8 @@ export class IngredientService {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache, no-store, must-revalidate.',
         'Pragma': 'no-cache',
-        'Expires': '0'
+        'Expires': '0',
+         Authorization: 'Basic ' + btoa(constants.apiCredentialsAdmin)
       }),
       observe: 'body',
     })

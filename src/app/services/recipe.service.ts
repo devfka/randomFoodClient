@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {RecipeView} from "../types/recipe";
 import {environment} from "../../environments/environment";
 import {RecipeIngredient, RecipeIngredientView} from "../types/recipe-ingredient";
+import {constants} from "../util/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +59,9 @@ export class RecipeService {
 
     const url: string = environment.allRecipesWithIngredientList;
 
-    return this.http.get<RecipeIngredientView[]>(url);
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(constants.apiCredentials)});
+
+    return this.http.get<RecipeIngredientView[]>(url, {headers});
   }
 
   public deleteRecipe(recipeId: number): Observable<any> {
@@ -70,7 +73,8 @@ export class RecipeService {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache, no-store, must-revalidate.',
         'Pragma': 'no-cache',
-        'Expires': '0'
+        'Expires': '0',
+        Authorization: 'Basic ' + btoa(constants.apiCredentialsAdmin)
       }),
       observe: 'body'
     })
@@ -87,7 +91,8 @@ export class RecipeService {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache, no-store, must-revalidate.',
         'Pragma': 'no-cache',
-        'Expires': '0'
+        'Expires': '0',
+        Authorization: 'Basic ' + btoa(constants.apiCredentials)
       }),
       observe: 'body'
     })
@@ -97,21 +102,21 @@ export class RecipeService {
                                                unselectedIngredients: Array<string>): Observable<Array<RecipeIngredientView>> {
     const url: string = environment.allRecipesWithIngredientListByIngredient;
 
-    return this.http.get<RecipeIngredientView[]>(`${url}/` + `?selectedIngredients=` + `${selectedIngredients}` + `&` + `unselectedIngredients=` + `${unselectedIngredients}`);
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(constants.apiCredentials)});
+
+    return this.http.get<RecipeIngredientView[]>(`${url}/` + `?selectedIngredients=` + `${selectedIngredients}` + `&` + `unselectedIngredients=` + `${unselectedIngredients}`, {headers});
   }
 
   public addRecipe(recipeIngredient: RecipeIngredient): Observable<Object> {
     const url: string = environment.addRecipe;
-
-    //return this.http.post<RecipeIngredient>(url, JSON.stringify(recipeIngredient));
-    console.log(JSON.stringify(recipeIngredient));
 
     return this.http.post<RecipeIngredientView>(url, recipeIngredient, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache, no-store, must-revalidate.',
         'Pragma': 'no-cache',
-        'Expires': '0'
+        'Expires': '0',
+         Authorization: 'Basic ' + btoa(constants.apiCredentialsAdmin)
       }),
       observe: 'body',
     })

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {RecipeIngredient, RecipeIngredientView} from "../../types/recipe-ingredient";
 import {RecipeService} from "../../services/recipe.service";
@@ -12,7 +12,7 @@ import {Ingredient} from "../../types/ingredient";
   templateUrl: './create-edit-recipe.component.html',
   styleUrls: ['./create-edit-recipe.component.css']
 })
-export class CreateEditRecipeComponent implements OnInit {
+export class CreateEditRecipeComponent implements OnInit{
 
   recipeForm: FormGroup;
 
