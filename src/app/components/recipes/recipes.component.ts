@@ -51,7 +51,7 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit() {
     this.getRecipesWithIngredients();
-    console.log("recipe component init adadasdadasdas");
+    console.log("recipe component init");
     this.dataService.currentSelected.subscribe(message => this.selectedIngredientOnParent = message);
     this.dataService.currentUnSelected.subscribe(message => this.unSelectedIngredientOnParent = message);
   }
